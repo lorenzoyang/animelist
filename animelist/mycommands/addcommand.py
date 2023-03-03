@@ -72,6 +72,8 @@ def impl_add_command(new_name: List[str], genre_flag: bool, anime_list: List[Ani
     # aggiunge l'anime al file csv
     AnimeListData.append_to_csv(anime)
 
+    common.show_anime(anime)
+
 
 def select_from_menu(items: tuple[str, ...], title: str, default: str, show_choices: bool = True) -> str:
     """To select an item from a menu"""

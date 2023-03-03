@@ -1,5 +1,7 @@
 from typing import List, Optional
 
+import rich
+
 from animelist.anime import Anime
 from animelist.animelistdata import AnimeListData
 
@@ -8,6 +10,8 @@ anime_list = AnimeListData.read_from_csv()
 
 # inizializzazione della lista di generi
 GENRE_LIST: tuple[str, ...] = AnimeListData.read_genres_from_file()
+
+console = rich.console.Console()
 
 
 def get_anime_from_name(existing_name: str, anime_list: List[Anime]) -> Optional[Anime]:
@@ -18,4 +22,12 @@ def get_anime_from_name(existing_name: str, anime_list: List[Anime]) -> Optional
 
 
 def show_anime(anime: Anime) -> None:
-    print(anime)
+    """Show anime info"""
+
+    console.print(f"Name: {anime.name}")
+    console.print(f"Type: {anime.anime_type}")
+    console.print(f"Genre: {', '.join(anime.genre)}")
+    console.print(f"Season: {anime.season}")
+    console.print(f"Episode: {anime.episode}")
+    console.print(f"Status: {anime.status}")
+    console.print(f"Rating: {anime.rating}")

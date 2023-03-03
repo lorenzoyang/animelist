@@ -9,6 +9,7 @@ from animelist.mycommands.listcommand import impl_list_command
 from animelist.mycommands.removecommand import impl_remove_command
 from animelist.mycommands.showcommand import impl_show_command
 from animelist.mycommands.updatecommand import impl_update_command
+from animelist.mycommands.watchcommand import impl_watch_command
 
 # cli app object
 app = typer.Typer()
@@ -32,17 +33,19 @@ def list_command(
 
 
 @app.command("show")
-def show_command(existing_name: List[str] = typer.Argument(...)) -> None:
+def show_command(
+        existing_name: List[str] = typer.Argument(...)) -> None:
     """To show information about a specific media in your list"""
 
     impl_show_command(existing_name, common.anime_list)
 
 
 @app.command("add")
-def add_command(new_name: List[str] = typer.Argument(...),
+def add_command(
+        new_name: List[str] = typer.Argument(...),
 
-                genre_flag: bool = typer.Option(False, "--genre", "-g", help="treat the value of the name as the genre",
-                                                show_default=True)) -> None:
+        genre_flag: bool = typer.Option(False, "--genre", "-g", help="treat the value of the name as the genre",
+                                        show_default=True)) -> None:
     """To add a new anime to your list"""
 
     impl_add_command(new_name, genre_flag, common.anime_list)
@@ -83,6 +86,17 @@ def update_command(
 
     impl_update_command(existing_name, new_type, new_name, new_genre, new_season, new_episode, new_status, new_rating,
                         common.anime_list)
+
+
+@app.command("watch")
+def watch_command(
+        existing_name: List[str] = typer.Argument(...),
+
+        episode: int = typer.Option(1, "--episode", "-e", help="Number of anime episodes to watch",
+                                    show_default=True)) -> None:
+    """To watch an anime from your list"""
+
+    impl_watch_command(existing_name, episode, common.anime_list)
 
 
 if __name__ == "__main__":
