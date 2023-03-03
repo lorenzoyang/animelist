@@ -9,8 +9,10 @@ from animelist.anime import Anime, AnimeTypes, Status
 class AnimeListData:
     """Data class"""
 
+    HOME_DIR = os.path.expanduser("~")
     # il nome della cartella dove salvare i dati
-    DIRECTORY_NAME = 'MyAnimeListData'
+    DIRECTORY_NAME = os.path.join(HOME_DIR, 'MyAnimeListData')
+
     # il percorso del file csv per salvare lista di anime
     ANIME_PATH: str = os.path.join(DIRECTORY_NAME, 'anime_data.csv')
     # il percorso del file csv per salvare lista di generi
@@ -22,6 +24,7 @@ class AnimeListData:
     def initialize(cls: 'AnimeListData') -> None:
         """Initialize the data"""
 
+        # pathlib e' una libreria
         pathlib.Path(cls.DIRECTORY_NAME).mkdir(parents=True, exist_ok=True)
 
         if not os.path.exists(cls.ANIME_PATH):
