@@ -15,14 +15,14 @@ console = rich.console.Console()
 
 
 def get_anime_from_name(existing_name: str, anime_list: List[Anime]) -> Optional[Anime]:
-    """Get anime from name/short name"""
+    """Get anime from name"""
 
     matches = [anime for anime in anime_list if anime.name.lower().startswith(existing_name.lower())]
     return min(matches, key=lambda anime: len(anime.name), default=None)
 
 
 def show_anime(anime: Anime) -> None:
-    """Show anime info"""
+    """Show anime"""
 
     console.print(f"Name: {anime.name}")
     console.print(f"Type: {anime.anime_type}")

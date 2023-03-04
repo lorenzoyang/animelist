@@ -7,7 +7,7 @@ from animelist.anime import Anime, AnimeTypes, Status
 
 
 class AnimeListData:
-    """Data class"""
+    """Class for the anime list data"""
 
     HOME_DIR = os.path.expanduser("~")
     # il nome della cartella dove salvare i dati
@@ -22,9 +22,8 @@ class AnimeListData:
 
     @classmethod
     def initialize(cls: 'AnimeListData') -> None:
-        """Initialize the data"""
+        """create the directory and the files if they don't exist"""
 
-        # pathlib e' una libreria
         pathlib.Path(cls.DIRECTORY_NAME).mkdir(parents=True, exist_ok=True)
 
         if not os.path.exists(cls.ANIME_PATH):
@@ -57,6 +56,7 @@ class AnimeListData:
     @classmethod
     def read_from_csv(cls: 'AnimeListData') -> List[Anime]:
         """Read the anime list from the csv file"""
+
         cls.initialize()
 
         anime_list = []
@@ -96,6 +96,8 @@ class AnimeListData:
 
     @classmethod
     def predefined_genres_list(cls):
+        """Return the predefined genres list"""
+
         return (
             'Adventure', 'Action', 'Comedy', 'Slice of Life', 'Drama', 'Fantasy', 'Supernatural', 'Magic', 'Mystery',
             'Horror', 'Psychological', 'Sci-Fi', 'Romance')

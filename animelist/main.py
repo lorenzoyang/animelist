@@ -27,7 +27,7 @@ def list_command(
                                                       help="To filter your list by rating ([<, <=, =, >, >=]rating)",
                                                       show_default=False),
 ) -> None:
-    """To list all anime in your list"""
+    """To list all the anime in your list"""
 
     impl_list_command(existing_genre, existing_status, existing_rating, common.anime_list)
 
