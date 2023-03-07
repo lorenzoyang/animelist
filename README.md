@@ -48,7 +48,7 @@ watched, are watching, or plan to watch. It allows you to manage your anime list
 - **Update [name]:** To update an anime of your list
     - Options (all parameters are optional, but at least one parameter needs to be provided):
         - **--type [type]:** a new type
-          - **type:** Anime (default), Manga, Film
+            - **type:** Anime (default), Manga, Film
         - **--name [name]:** a new name
         - **--genre [genre]:** a new genre
         - **--season [season]:** a new season
@@ -63,8 +63,6 @@ watched, are watching, or plan to watch. It allows you to manage your anime list
         - ./myanimelist watch Attack On Titan 2
 
 ## Installation
-
-TODO
 
 ## License
 

@@ -15,10 +15,9 @@ def impl_list_command(existing_genre: Optional[str], existing_status: Optional[S
     """To list all anime in your list"""
 
     table = Table(title="My Anime List")
-
     table.add_column("Name", justify="left", style="cyan")
     table.add_column("Genre", justify="left", style="cyan")
-    table.add_column("Status", justify="left", style="cyan")
+    table.add_column("Status", justify="center", style="cyan")
     table.add_column("Rating", justify="center", style="cyan")
     table.add_column("Type", justify="center", style="cyan")
 
@@ -30,7 +29,7 @@ def impl_list_command(existing_genre: Optional[str], existing_status: Optional[S
     if existing_status:
         anime_list = [anime for anime in anime_list if existing_status == anime.status]
 
-    # [< | <= | = | > | >=]rating
+    # filter by [< | <= | = | > | >=]rating
     if existing_rating:
         if existing_rating.isdigit():
             anime_list = [anime for anime in anime_list if anime.rating == int(existing_rating)]
@@ -52,15 +51,10 @@ def impl_list_command(existing_genre: Optional[str], existing_status: Optional[S
                 case ">=":
                     anime_list = [anime for anime in anime_list if anime.rating >= int(existing_rating[2:])]
 
-    max_length: int = 8
     for anime in anime_list:
-        # format name
-        f_name: str = anime.name[:max_length] + "..." if len(anime.name) > max_length else anime.name
         # format genre
         f_genre = ", ".join(anime.genre) if anime.genre[1] else anime.genre[0]
 
-        table.add_row(f_name, f_genre, anime.status, str(anime.rating), str(anime.anime_type.value))
+        table.add_row(anime.name, f_genre, anime.status, str(anime.rating), str(anime.anime_type.value))
 
     console.print(table)
-
-

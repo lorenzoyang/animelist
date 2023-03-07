@@ -15,7 +15,6 @@ class Status(str, Enum):
 
     WATCHING = 'watching'
     COMPLETED = 'completed'
-    ON_HOLD = 'onHold'
     DROPPED = 'dropped'
     PLAN_TO_WATCH = 'planToWatch'
 
