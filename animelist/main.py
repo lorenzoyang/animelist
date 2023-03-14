@@ -24,12 +24,15 @@ def list_command(
                                                          show_default=False, case_sensitive=False),
 
         existing_rating: Optional[str] = typer.Option(None, "--rating", "-r",
-                                                      help="To filter your list by rating ([<, <=, =, >, >=]rating)",
+                                                      help="To filter your list by rating ([min]:[max])",
                                                       show_default=False),
+
+        number: Optional[int] = typer.Option(None, "--number", "-n", help="To show the first n anime in your list",
+                                             show_default=False)
 ) -> None:
     """To list all the anime in your list"""
 
-    impl_list_command(existing_genre, existing_status, existing_rating, common.anime_list)
+    impl_list_command(existing_genre, existing_status, existing_rating, number, common.anime_list)
 
 
 @app.command("show")

@@ -32,7 +32,7 @@ def is_valid_enum(enum_class: Union[AnimeTypes, Status], enum_str: Union[str, in
 class Anime:
     """Anime class."""
 
-    RATING_RANGE = range(1, 6)
+    RATING_RANGE = range(1, 10)
 
     def __init__(self, anime_type: AnimeTypes, name: str, genre: Tuple[str, str], status: Status, season: Optional[int],
                  episode: int, rating: Optional[int]) -> None:

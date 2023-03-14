@@ -7,7 +7,7 @@ watched, are watching, or plan to watch. It allows you to manage your anime list
 
 ## Features
 
-- List all anime in your list
+- List all anime
 - Filter the list by genre, status, and rating
 - Show information about a specific anime
 - Add new anime to your list
@@ -22,9 +22,10 @@ watched, are watching, or plan to watch. It allows you to manage your anime list
         - **--genre [genre]:** To filter your list by genre
         - **--status [status]:** To filter your list by status
         - **--rating [format]:** To filter your list by rating
-            - **format:** "[< | <= | = | > | >=]rating"
+            - **format:** [min]:[max] (1:10, [min]: -> >=min, :[max] -> <=max)
+        - **--number [number]:** To limit the number of anime in the list
     - **Example:**
-        - ./myanimelist list --genre action --status watching --rating "<4"
+        - ./myanimelist list --genre action --status watching --rating "1:9"
 
 - **Show [name]:** To show information about a specific anime in your list
     - **Example:**
@@ -36,7 +37,6 @@ watched, are watching, or plan to watch. It allows you to manage your anime list
     - **Example:**
         - ./myanimelist add Attack On Titan
         - ./myanimelist add --genre action
-
 
 - **Remove [name]:** To remove an anime from your list
     - Options (all parameters are optional):
@@ -63,6 +63,8 @@ watched, are watching, or plan to watch. It allows you to manage your anime list
         - ./myanimelist watch Attack On Titan 2
 
 ## Installation
+
+TODO
 
 ## License
 
