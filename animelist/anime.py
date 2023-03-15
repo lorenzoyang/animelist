@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import Tuple, Union, Optional
+from typing import Tuple, Union, Optional, List
 
 
 class AnimeTypes(str, Enum):
@@ -32,10 +32,15 @@ def is_valid_enum(enum_class: Union[AnimeTypes, Status], enum_str: Union[str, in
 class Anime:
     """Anime class."""
 
-    RATING_RANGE = range(1, 10)
+    RATING_RANGE = range(1, 11)
 
-    def __init__(self, anime_type: AnimeTypes, name: str, genre: Tuple[str, str], status: Status, season: Optional[int],
-                 episode: int, rating: Optional[int]) -> None:
+    EMPTY_EPISODE = -1
+    EMPTY_RATING = -1
+
+    GENRE_DELIMITER = ','
+
+    def __init__(self, anime_type: AnimeTypes, name: str, genre: Tuple[str, str], status: Status, season: int,
+                 episode: Optional[int], rating: Optional[int]) -> None:
         """Initialize an anime object."""
 
         self.__anime_type = anime_type
@@ -107,28 +112,39 @@ class Anime:
         self.__season = season
 
     @property
-    def episode(self) -> int:
+    def episode(self) -> Optional[int]:
         """Return the anime episode."""
 
         return self.__episode
 
     @episode.setter
-    def episode(self, episode: int) -> None:
+    def episode(self, episode: Optional[int]) -> None:
         """Set the anime episode."""
 
         self.__episode = episode
 
     @property
-    def rating(self) -> int:
+    def rating(self) -> Optional[int]:
         """Return the anime rating."""
 
         return self.__rating
 
     @rating.setter
-    def rating(self, rating: int) -> None:
+    def rating(self, rating: Optional[int]) -> None:
         """Set the anime rating."""
 
         self.__rating = rating
+
+    def to_csv_row(self) -> List[str]:
+        """Return the anime object as a list of strings."""
+
+        return [self.anime_type.value,
+                self.name,
+                Anime.GENRE_DELIMITER.join(self.genre),
+                self.status.value,
+                self.season,
+                self.episode if self.episode is not None else Anime.EMPTY_EPISODE,
+                self.rating if self.rating is not None else Anime.EMPTY_RATING]
 
     def __eq__(self, other: 'Anime') -> bool:
         """Return True if the anime name is equal to the other anime name."""

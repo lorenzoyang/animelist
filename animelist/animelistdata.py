@@ -1,7 +1,7 @@
 import csv
 import os
 import pathlib
-from typing import List
+from typing import List, Optional
 
 from animelist.anime import Anime, AnimeTypes, Status
 
@@ -17,6 +17,7 @@ class AnimeListData:
     ANIME_PATH: str = os.path.join(DIRECTORY_NAME, 'anime_data.csv')
     # il percorso del file csv per salvare lista di generi
     GENRES_PATH: str = os.path.join(DIRECTORY_NAME, 'genres_data.csv')
+
     # il delimitatore per il file csv
     CSV_DELIMITER: str = '|'
 
@@ -36,12 +37,12 @@ class AnimeListData:
     def write_to_csv(cls: 'AnimeListData', anime_list: List[Anime]) -> None:
         """Write the anime list to the csv file"""
 
+        # sort the anime list by rating
+        anime_list = sorted(anime_list, key=lambda a: a.rating)
         with open(cls.ANIME_PATH, 'w', newline='') as csvfile:
             writer = csv.writer(csvfile, delimiter=cls.CSV_DELIMITER)
             for anime in anime_list:
-                writer.writerow(
-                    [anime.anime_type.value, anime.name, ','.join(anime.genre), anime.status.value, anime.season,
-                     anime.episode, anime.rating])
+                writer.writerow(anime.to_csv_row())
 
     @classmethod
     def append_to_csv(cls: 'AnimeListData', anime: Anime) -> None:
@@ -49,9 +50,7 @@ class AnimeListData:
 
         with open(cls.ANIME_PATH, 'a', newline='') as csvfile:
             writer = csv.writer(csvfile, delimiter=cls.CSV_DELIMITER)
-            writer.writerow(
-                [anime.anime_type.value, anime.name, ','.join(anime.genre), anime.status.value, anime.season,
-                 anime.episode, anime.rating])
+            writer.writerow(anime.to_csv_row())
 
     @classmethod
     def read_from_csv(cls: 'AnimeListData') -> List[Anime]:
@@ -71,10 +70,19 @@ class AnimeListData:
 
                 status: Status = Status(row[3])
                 season: int = int(row[4])
-                episode: int = int(row[5])
-                rating: int = int(row[6])
+
+                episode: Optional[int] = int(row[5])
+                if episode == Anime.EMPTY_EPISODE:
+                    episode = None
+
+                rating: Optional[int] = int(row[6])
+                if rating == Anime.EMPTY_RATING:
+                    rating = None
+
                 anime: Anime = Anime(anime_type, name, genre, status, season, episode, rating)
+
                 anime_list.append(anime)
+
         return anime_list
 
     @classmethod
