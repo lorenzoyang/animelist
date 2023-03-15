@@ -1,14 +1,11 @@
 from typing import List
 
-import rich
 import typer
 from rich.prompt import Confirm
 
 from animelist import common
 from animelist.anime import Anime
 from animelist.animelistdata import AnimeListData
-
-console = rich.console.Console()
 
 
 def impl_remove_command(existing_name: List[str], genre_flag: bool, anime_list: List[Anime]) -> None:
@@ -18,7 +15,7 @@ def impl_remove_command(existing_name: List[str], genre_flag: bool, anime_list: 
     if genre_flag:
         existing_genre = " ".join(existing_name)
         if not any(existing_genre.lower() == genre.lower() for genre in common.GENRE_LIST):
-            console.print(f"[red]Genre {existing_genre} does not exist in your list[/red]")
+            common.console.print(f"[red]Genre {existing_genre} does not exist in your list[/red]")
             raise typer.Exit(1)
 
         common.GENRE_LIST = tuple(genre for genre in common.GENRE_LIST if genre.lower() != existing_genre.lower())
@@ -31,10 +28,10 @@ def impl_remove_command(existing_name: List[str], genre_flag: bool, anime_list: 
     anime: Anime = common.get_anime_from_name(anime_name, anime_list)
 
     if anime is None:
-        console.print(f"[red]Anime {anime_name} does not exist in your list[/red]")
+        common.console.print(f"[red]Anime {anime_name} does not exist in your list[/red]")
         raise typer.Exit(1)
 
-    confirmation = Confirm.ask(f"Are you sure you want to remove\n{anime.name}\nfrom your list?")
+    confirmation = Confirm.ask(f"Are you sure you want to remove\n[red]{anime.name}[/red]\nfrom your list?")
     if confirmation:
         anime_list.remove(anime)
         # salva la lista modificata nel file
