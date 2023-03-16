@@ -22,7 +22,7 @@ def impl_add_command(new_name: List[str], genre_flag: bool, anime_list: List[Ani
         common.GENRE_LIST = common.GENRE_LIST + (new_genre,)
         # salva il nuovo genere nel file
         AnimeListData.write_genres_to_file(common.GENRE_LIST)
-        return
+        raise typer.Exit()
 
     # anime name
     anime_name: str = " ".join(new_name)

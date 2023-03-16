@@ -74,7 +74,7 @@ def update_command(
 
         new_name: Optional[List[str]] = typer.Option(None, "--name", "-n", help="a new name", show_default=False),
 
-        new_genre: Optional[list[str]] = typer.Option(None, "--genre", "-g", help="a new genre", show_default=False),
+        new_genre: Optional[List[str]] = typer.Option(None, "--genre", "-g", help="a new genre", show_default=False),
 
         new_season: Optional[int] = typer.Option(None, "--season", "-s", help="a new season", show_default=False),
 

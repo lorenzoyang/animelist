@@ -21,12 +21,11 @@ def impl_remove_command(existing_name: List[str], genre_flag: bool, anime_list: 
         common.GENRE_LIST = tuple(genre for genre in common.GENRE_LIST if genre.lower() != existing_genre.lower())
         # salva il nuovo genere nel file
         AnimeListData.write_genres_to_file(common.GENRE_LIST)
-        return
+        raise typer.Exit()
 
     # anime name
     anime_name: str = " ".join(existing_name)
     anime: Anime = common.get_anime_from_name(anime_name, anime_list)
-
     if anime is None:
         common.console.print(f"[red]Anime {anime_name} does not exist in your list[/red]")
         raise typer.Exit(1)
