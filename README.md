@@ -77,8 +77,6 @@ watched, are watching, or plan to watch. It allows you to manage your anime list
 
 ![step 5](img/installation/step5.png)
 
-![step 6](img/installation/step6.png)
-
 
 ## License
 
