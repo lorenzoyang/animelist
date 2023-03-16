@@ -25,11 +25,12 @@ watched, are watching, or plan to watch. It allows you to manage your anime list
             - **format:** [min]:[max] (1:10, [min]: -> >=min, :[max] -> <=max)
         - **--number [number]:** To limit the number of anime in the list
     - **Example:**
-        - ./myanimelist list --genre action --status watching --rating "1:9"
+        - ./myanimelist list --genre action --status watching --rating 1:9
 
 - **Show [name]:** To show information about a specific anime in your list
     - **Example:**
         - ./myanimelist show Attack on Titan
+        - ./myanimelist show attack o
 
 - **Add [name]:** To add a new anime to your list
     - Options (all parameters are optional):
@@ -60,11 +61,24 @@ watched, are watching, or plan to watch. It allows you to manage your anime list
 
 - **Watch [name] [number of episode (default=1)]:** To watch anime (increase the number of anime episodes)
     - **Example:**
-        - ./myanimelist watch Attack On Titan 2
+        - ./myanimelist watch Attack On Titan -e 2
 
 ## Installation
 
-TODO
+#### download via python pip
+
+![step 1](img/installation/step1.png)
+
+![step 2](img/installation/step2.png)
+
+![step 3](img/installation/step3.png)
+
+![step 4](img/installation/step4.png)
+
+![step 5](img/installation/step5.png)
+
+![step 6](img/installation/step6.png)
+
 
 ## License
 
