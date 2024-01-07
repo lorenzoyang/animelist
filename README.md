@@ -1,4 +1,4 @@
-# ⛔️ DEPRECATED MyAnimeList
+# MyAnimeList
 
 [italiano](README.it.md)
 
