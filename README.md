@@ -1,4 +1,4 @@
-# MyAnimeList
+# Anime List
 
 [italiano](README.it.md)
 
